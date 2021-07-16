@@ -35,8 +35,8 @@ export default function Home(props) {
 				<>
 				<h3 className={classes.country}>Countries List</h3>
 				<ImageList sx={{ width: 500, height: 450 }}>
-				{data && data.map((item) => (
-	  				<ImageListItem >
+				{data && data.map((item,index) => (
+	  				<ImageListItem key={index}>
 					<img
 		  			srcSet={`${item.flag}?w=248&fit=crop&auto=format 1x,
 			  		${item.flag}?w=248&fit=crop&auto=format&dpr=2 2x`}
