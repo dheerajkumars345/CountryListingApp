@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import Home from './Home'
-import { getCountries } from './dux'
+import { getData } from './dux'
 
 const mapStateToProps = (state) => ({
   data: state.HomeReducer.data,
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  getCountries
+  getData
 }
 
 export default connect(

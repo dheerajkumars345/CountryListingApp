@@ -2,21 +2,21 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 
 import {
-   GET_COUNTRIES_REQUESTED,
-    GET_COUNTRIES_START,
-    GET_COUNTRIES_SUCCESS,
-    GET_COUNTRIES_FAIL
+   GET_DATA_REQUESTED,
+    GET_DATA_START,
+    GET_DATA_SUCCESS,
+    GET_DATA_FAIL
 } from './dux'
 
-export function* fetchCountriesData() {
+export function* fetchData() {
   try {
-    yield put({ type: GET_COUNTRIES_START })
-    const response = yield call(fetch, 'https://restcountries.eu/rest/v2/all?fields=name;flag;region')
+    yield put({ type: GET_DATA_START })
+    const response = yield call(fetch, 'http://localhost:3001/body')
     const data = yield response.json()
-    yield put({ type: GET_COUNTRIES_SUCCESS, payload: data })
+    yield put({ type: GET_DATA_SUCCESS, payload: data })
   } catch (error) {
-    yield put({ type: GET_COUNTRIES_FAIL, payload: error })
+    yield put({ type: GET_DATA_FAIL, payload: error })
   }
 }
 
-export default [takeLatest(GET_COUNTRIES_REQUESTED, fetchCountriesData)]
+export default [takeLatest(GET_DATA_REQUESTED, fetchData)]
